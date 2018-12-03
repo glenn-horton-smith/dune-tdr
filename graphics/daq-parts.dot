@@ -1,0 +1,54 @@
+digraph parts {
+        rankdir=LR
+        // data
+        node[shape=record];
+        ele[label="detector\nelectronics",shape=diamond];
+        
+        rwf[label="detector data\n(all waveforms)"];
+        bwf[label="detector data\n(collection waveforms)"];
+        tp[label="{TP: trigger\nprimitive}|{(per-channel)}|{chan,t,dt,ADC\nprimtive type\npartition ID}"];
+        tc[label="{TC: trigger\ncandidate}|{(per-det unit)}|{APA/face,t,dt,chans\npartition ID\nforwards primitives}"];
+        tr[label="{TR: trigger\nrequest}|{(per-partition)}|{requested t,dt, chans\npartition ID\nforwards primitives}"];
+        ext[label="{EXT: external\ntrigger request}|{(to all partitions)}|{some description}"];        
+        td[label="{TD: trigger\ndecision}|{(front-end addressing)}|{t,dt x chans\nforwards candidates}"];
+        rr[label="{RR: record request}|{(per-EB instance)}|{t,dt x chans to readout\nforwards candidates}"];
+        fr[label="{FR: fragment\nrequest}|{(per-FEC)}|{t,dt x chans}"];
+        df[label="{DF: data\nfragment}|{(per-FEC)}|{detector data}"];
+        dr[label="{DR: data record\n(\"event\")}|{(as per trig. cmd.)}|{all fragments\ntrigger command\ntrigger candidates\ntrigger primitives}"];
+
+        // processes
+        node[shape=circle];
+        recv[label="Front-end\ndata receiver\n+ buffer"];
+        tpp[label="TPP:\nTrigger\nPrimitive\nProducer"];
+        tcp[label="TCP:\nTrigger\nCandidate\nProducer"];
+        plt[label="PLT: Partition\n Level Trigger"];
+        mlt[label="MLT: Module\nLevel Trigger"];
+        dfo[label="DFO: Dataflow\nOrchestrator\n(dispatches)"];
+        bis[label="BIS: Buffer\nInferface\nService"];
+        eb[label="EB: Event\nBuilder\n(instance)"];
+        out[label="output\ndisk\nbuffer",shape=octagon];
+
+        etl[label="ETL:\nExternal\nTrigger Logic\n(distributes)"]
+        
+        //ele->rwf->recv->bwf->tpp;
+        tpp->bwf->recv->rwf->ele[dir=back];
+        
+        tpp->tp->tcp->tc->plt;
+        plt->tr->mlt;
+
+        //mlt->tcmd->dfo->tcmd2->eb->req->bis->frag->eb->rec->out;
+        td->mlt[dir=back];
+        dfo->td[dir=back];
+        rr->dfo[dir=back];
+        eb->rr[dir=back];
+        fr->eb[dir=back];
+        bis->fr[dir=back];
+        bis->df->eb->dr->out;
+        
+        td->etl->ext;
+        mlt->ext[dir=back];
+
+        edge[style=invis];
+        {rank=same;
+                plt->dfo->out;}
+}

@@ -53,6 +53,13 @@ def configure(cfg):
                      path_list=[os.path.join(os.path.realpath("."),"util")],
                      mandatory = True)
 
+    # To automate requirements table generation some special programs are needed.  They are optional
+    cfg.find_program('dune-reqs', var='DUNEREQS',
+                     mandatory = False);
+    cfg.find_program('dunegen.sh', var='DUNEGEN',
+                     path_list=[os.path.join(os.path.realpath("."),"util")],
+                     mandatory = False)
+
     cfg.env.PDFLATEXFLAGS += [
         "-file-line-error",
         "-recorder",
@@ -84,7 +91,7 @@ def tarball(task):
             tf.add(nice_path(node), prefix + tar_path)
 
 
-from waflib.TaskGen import feature, after_method
+from waflib.TaskGen import feature, after_method, before_method
 @feature('tex') 
 @after_method('apply_tex') 
 def create_another_task(self): 
@@ -110,12 +117,55 @@ class manifest(Task):
             for node in nodes:
                 fp.write(nice_path(node) + '\n')
     
+
 def build(bld):
 
 
     prompt_level = 0
     if bld.options.debug:
         prompt_level = 1
+
+
+    # First, if we are so configured then we may try to rebuild requirements tables.
+    reqsdeps = list()
+    if not bld.env['DUNEREQS']:
+        print ("Note: dune-reqs found, will not try to rebuild requirements files")
+    else:
+
+        docids_node = bld.path.find_resource("util/dune-reqs-docids.txt")
+        secret = bld.path.find_resource("docdb.pw").read().strip()
+        for line in docids_node.read().split('\n'):
+            line = line.strip()
+            if not line: continue
+            name,docid = line.split()
+            docid_tagfile = "%s.docid"%name
+            bld(rule="${DUNEREQS} getdocdb -t ${TGT} -U dune -P %s -a tar %s"%(secret, docid),
+                source=docids_node,
+                target=docid_tagfile)
+            
+            
+            # Despite knowing better, generate into the source directory.
+            gen_dir = bld.srcnode.make_node('generated')
+
+            # Generate the subsys per-requirement tables and their roll-up
+            one_tmpl = bld.path.find_resource("util/templates/spec-table-one.tex.j2")
+            all_tmpl = bld.path.find_resource("util/templates/spec-table-all.tex.j2")
+            one_file = "req-%s-{label}.tex"%name
+            all_targ = gen_dir.make_node("req-%s-all.tex"%name)
+            reqsdeps.append(all_targ)
+            bld(rule="${DUNEGEN} reqs-one-and-all %s ${SRC} %s ${TGT}"%(name, one_file),
+                source=[docid_tagfile,
+                        one_tmpl, all_tmpl],
+                target=[all_targ])
+
+
+            #tmpl_node = bld.path.find_resource("util/templates/all-reqs.tex.j2")
+            #tgt = gen_dir.make_node(name + "-" + tmpl_node.name.replace(".j2",""))
+            #bld(rule="${DUNEGEN} reqs ${SRC} ${TGT}",
+            #    source=[docid_tagfile, tmpl_node], target=[tgt])
+
+            # Note, this may lead to hysteresis.  For better way see:
+            # https://waf.io/blog/2010/11/code-generators-and-unknown-files.html
 
     chaptex = bld.path.find_resource("util/chapters.tex")
 
@@ -129,32 +179,36 @@ def build(bld):
         "vol-swc.tex",
         "vol-tc.tex"
     ]
+    
+    maintexs = list()
     for volind, voltex in enumerate(voltexs):
+        volnode = bld.path.find_resource(voltex)
         volname = voltex.replace('.tex','')
         voldir = bld.path.find_dir(volname)
         volpdf = bld.path.find_or_declare(volname + '.pdf')
-
         voltar = bld.path.find_or_declare('%s-%s.tar.gz' % (volname, VERSION))
         volman = bld.path.find_or_declare(volname + '.manifest')
+        maintexs.append(volnode)
 
         # Task to build the volume
         bld(features='tex', prompt = prompt_level,
-            source = voltex,
+            source = volnode,
             target = volpdf)
+        #for reqnode in reqsdeps:
+        #    bld.add_manual_dependency(volnode, reqnode)
         bld.install_files('${PREFIX}', [volpdf])
+        
         
         # Tasks to build per chapter
         if bld.options.chapters:
             for chtex in voldir.ant_glob("ch-*.tex"):
                 chname = os.path.basename(chtex.name).replace('.tex','')
                 chmaintex = bld.path.find_or_declare("%s-%s.tex" % (volname, chname))
-
-                print chmaintex
-
+                maintexs.append(chmaintex)
                 bld(source=[chaptex, chtex],
                     target=chmaintex,
                     rule="${CHAPTERS} ${SRC} ${TGT} '%s' '%s' %d" % (volname, chname, volind+1))
-
+                
                 bld(features='tex',
                     prompt = prompt_level,
                     source = os.path.basename(str(chmaintex)),
@@ -171,3 +225,8 @@ def build(bld):
                 extra = voltex + ' utphys.bst dune.cls graphics/dunelogo_colorhoriz.jpg',
                 rule=tarball)
             bld.install_files('${PREFIX}', [voltar])
+
+
+    #assert len(maintexs) == len(set(maintexs))
+    #print (maintexs)
+    #print (reqsdeps)
