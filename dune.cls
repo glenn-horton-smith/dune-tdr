@@ -362,6 +362,8 @@
 \RequirePackage{eurosym}
 \RequirePackage{tfrupee}
 \RequirePackage{textcomp}
+\RequirePackage[utf8x]{inputenc}  % in case someone puts greek unicode in files
+\RequirePackage{textgreek}        % to define \texttheta, \textdelta, ...
 
 
 % Comoditize citing DocDB esp for interface documents in TDR.
