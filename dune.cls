@@ -366,7 +366,8 @@
 \usepackage{eurosym}
 \usepackage{tfrupee}
 \usepackage{textcomp}
-
+\usepackage[utf8x]{inputenc}  % in case someone puts greek unicode in files
+\usepackage{textgreek}        % to define \texttheta, \textdelta, ...
 
 % Comoditize citing DocDB esp for interface documents in TDR.
 % Using "as of" allows us to control which version is associated with the TDR by date.

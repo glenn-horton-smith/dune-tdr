@@ -99,85 +99,87 @@ For slow controls, the system will need to be designed to be robust enough to su
 
 % \fixme{Requirements table: replace ALARA with number or clear criterion, per reviewer comments. [gahs]; SG: I suggest using ENC < 1000 e$^{-}$ for minimum requirement and ALARA as goal. --- done [gahs]}
 
-\begin{dunetable}
-[Requirements for CISC subsystems]
-{p{0.45\linewidth}p{0.25\linewidth}p{0.25\linewidth}}
-{tab:fdgen-slow-cryo-requirements-1}
-{List of requirements for the different CISC subsystems}   
-Quantity/Parameter				                             & Minimum Requirement			                                        & Goal		                                              \\ \toprowrule                     
-Noise from Instrumentation devices				             & <\elecnoisefe                                          & \dword{alara}		                                              \\ \colhline                     
-Max. \efield near instrumentation devices				     & <\localefield			                                                & <15 kV/cm		                                          \\ \colhline                     
-\textbf{Purity Monitors}	                                             &                                                                      &                                                         \\ \colhline                      
-Precision in electron lifetime				                 & <1.4\% (<4\%)			                                            & < 1\%		                                              \\ \colhline                     
-Range in electron lifetime				                     & 0 - 10 ms                   (0 - 30 ms)			                    & 0 - 10 ms                   (0 - 30 ms)		          \\ \colhline                         
-Longevity				                                     & \dunelifetime			                                                    & > \dunelifetime		                                      \\ \colhline                     
-Stability				                                     & Match precision requirement at all places/times			    & Match precision requirement at all places/times  \\ \colhline  	                   
-Reliability				                                     & Daily Measurements			                                        & Measurements capable of being taken whenever needed	  \\ \colhline                         
-\textbf{Thermometers}	                                             &                                                                      &                                                         \\ \colhline                      
-Vertical density of sensors for T-gradient monitors			 & > 2 sensor/m			                                                & > 4 sensors/m		                                      \\ \colhline                 
-2D horizontal density for top/bottom individual sensors		 &  1 sensor/5(10) m 			                                        &  1 sensor/3(5) m 		                                  \\ \colhline                     
-Resolution of temperature measurements				         & < 2 mK			                                                    & <0.5 mK		                                          \\ \colhline                         
-Precision: temperature reproducibility 				         & < 5 mK			                                                    & 2 mK		                                              \\ \colhline                     
-Reliability				                                     & 80\% (in 18 months)			                                        & 50\% (during 20 years)		                              \\ \colhline                     
-Longevity				                                     & > 18 months			                                                & > 20 years		                                      \\ \colhline                         
-Stability 				                                     & Match precision requirement at all places/times 			    & 		                                                  \\ \colhline                 
-Discrepancy between lab and in-situ                                                                                                   		                                          
-calibrations for temperature sensors			             & < 5 mK			                                                    & < 3 mK		                                          \\ \colhline                           
-Discrepancy between measured temperature                                                                                                                                                      
-map and CFD simulations in ProtoDUNE-SP	                     & < 5 mK			                                                    & < 5 mK		                                          \\ \colhline                             
-\textbf{Gas Analyzers}	                                             &                                                                      &  \\ \colhline            
-Operating Range O2				                             & 0.2 (air) to 0.1 ppt			                                        & Air (0.2) to 0.1 ppt		                                             \\ \colhline    
-Operating Range H2O				                             & Nominally Air to sub ppb levels, depending on species of contaminant	& Air to sub ppb levels, depending on species of contaminant	          \\ \colhline           
-Operating Range N2				                             & Nominally Air to sub ppb levels, depending on species of contaminant	& Air to sub ppm.		                                              \\ \colhline             
-Precision: 1 sigma at zero				                     & depends on the range of the gas analyzer			                    & depends on the range of the gas analyzer		                      \\ \colhline     
-Detection limit: 3 sigma				                     & Different Gas analyzer modules are needed to cover the entire range	& Different Gas analyzer modules are needed to cover the entire range \\ \colhline           
-Stability 				                                     & <\% of full scale range.			                                    & <\% of full scale range.		                                      \\ \colhline         
-Longevity				                                     & >10 years			                                                & 10 years		                                                      \\   
-\end{dunetable}
+%%%%   \begin{dunetable}
+%%%%   [Requirements for CISC subsystems]
+%%%%   {p{0.45\linewidth}p{0.25\linewidth}p{0.25\linewidth}}
+%%%%   {tab:fdgen-slow-cryo-requirements-1}
+%%%%   {List of requirements for the different CISC subsystems}   
+%%%%   Quantity/Parameter				                             & Minimum Requirement			                                        & Goal		                                              \\ \toprowrule                     
+%%%%   Noise from Instrumentation devices				             & <\elecnoisefe                                          & \dword{alara}		                                              \\ \colhline                     
+%%%%   Max. \efield near instrumentation devices				     & <\localefield			                                                & <15 kV/cm		                                          \\ \colhline                     
+%%%%   \textbf{Purity Monitors}	                                             &                                                                      &                                                         \\ \colhline                      
+%%%%   Precision in electron lifetime				                 & <1.4\% (<4\%)			                                            & < 1\%		                                              \\ \colhline                     
+%%%%   Range in electron lifetime				                     & 0 - 10 ms                   (0 - 30 ms)			                    & 0 - 10 ms                   (0 - 30 ms)		          \\ \colhline                         
+%%%%   Longevity				                                     & \dunelifetime			                                                    & > \dunelifetime		                                      \\ \colhline                     
+%%%%   Stability				                                     & Match precision requirement at all places/times			    & Match precision requirement at all places/times  \\ \colhline  	                   
+%%%%   Reliability				                                     & Daily Measurements			                                        & Measurements capable of being taken whenever needed	  \\ \colhline                         
+%%%%   \textbf{Thermometers}	                                             &                                                                      &                                                         \\ \colhline                      
+%%%%   Vertical density of sensors for T-gradient monitors			 & > 2 sensor/m			                                                & > 4 sensors/m		                                      \\ \colhline                 
+%%%%   2D horizontal density for top/bottom individual sensors		 &  1 sensor/5(10) m 			                                        &  1 sensor/3(5) m 		                                  \\ \colhline                     
+%%%%   Resolution of temperature measurements				         & < 2 mK			                                                    & <0.5 mK		                                          \\ \colhline                         
+%%%%   Precision: temperature reproducibility 				         & < 5 mK			                                                    & 2 mK		                                              \\ \colhline                     
+%%%%   Reliability				                                     & 80\% (in 18 months)			                                        & 50\% (during 20 years)		                              \\ \colhline                     
+%%%%   Longevity				                                     & > 18 months			                                                & > 20 years		                                      \\ \colhline                         
+%%%%   Stability 				                                     & Match precision requirement at all places/times 			    & 		                                                  \\ \colhline                 
+%%%%   Discrepancy between lab and in-situ                                                                                                   		                                          
+%%%%   calibrations for temperature sensors			             & < 5 mK			                                                    & < 3 mK		                                          \\ \colhline                           
+%%%%   Discrepancy between measured temperature                                                                                                                                                      
+%%%%   map and CFD simulations in ProtoDUNE-SP	                     & < 5 mK			                                                    & < 5 mK		                                          \\ \colhline                             
+%%%%   \textbf{Gas Analyzers}	                                             &                                                                      &  \\ \colhline            
+%%%%   Operating Range O2				                             & 0.2 (air) to 0.1 ppt			                                        & Air (0.2) to 0.1 ppt		                                             \\ \colhline    
+%%%%   Operating Range H2O				                             & Nominally Air to sub ppb levels, depending on species of contaminant	& Air to sub ppb levels, depending on species of contaminant	          \\ \colhline           
+%%%%   Operating Range N2				                             & Nominally Air to sub ppb levels, depending on species of contaminant	& Air to sub ppm.		                                              \\ \colhline             
+%%%%   Precision: 1 sigma at zero				                     & depends on the range of the gas analyzer			                    & depends on the range of the gas analyzer		                      \\ \colhline     
+%%%%   Detection limit: 3 sigma				                     & Different Gas analyzer modules are needed to cover the entire range	& Different Gas analyzer modules are needed to cover the entire range \\ \colhline           
+%%%%   Stability 				                                     & <\% of full scale range.			                                    & <\% of full scale range.		                                      \\ \colhline         
+%%%%   Longevity				                                     & >10 years			                                                & 10 years		                                                      \\   
+%%%%   \end{dunetable}
+%%%%   
+%%%%   
+%%%%   \begin{dunetable}
+%%%%   [Requirements for CISC subsystems]
+%%%%   {p{0.45\linewidth}p{0.25\linewidth}p{0.25\linewidth}}
+%%%%   {tab:fdgen-slow-cryo-requirements-2}
+%%%%   {List of requirements for the different CISC subsystems}   
+%%%%   Quantity/Parameter				                             & Minimum Requirement			                                        & Goal		                                              \\ \toprowrule   
+%%%%   \textbf{Level Meters}	                                             &                                                                      &                                                                     \\ \colhline            
+%%%%   Precision (LBNF side)				                         & 0.1\% over 14 m (14 mm)			                                    & 0.1\% over 14 m (14 mm)		                                      \\ \colhline           
+%%%%   Precision (additional level meters, DUNE side)				 & 20 mm			                                                    &  20 mm		                                                      \\ \colhline         
+%%%%   Longevity				                                     & 20 years			                                                    & > 20 years		                                                  \\ \colhline     
+%%%%   \textbf{Cold cameras}	                                             &                                                                      &                                                                     \\ \colhline        
+%%%%   Coverage				                                     & 80\% of the exterior of HV surfaces			                        & 100\% 	                                                          \\ \colhline         
+%%%%   Frames per second				                             & yet to be defined			                                        & yet to be defined		                                              \\ \colhline             
+%%%%   Resolution 				                                     & 1 cm on the TPC			                                            & yet to be defined		                                              \\ \colhline           
+%%%%   Duty cycle				                                     & yet to be defined			                                        & yet to be defined		                                              \\ \colhline         
+%%%%   longevity				                                     & > 18 months			                                                & > 20 years		                                                  \\ 
+%%%%   \textbf{Inspection cameras}	                                         &                                                                      &                                                                     \\ \colhline        
+%%%%   Coverage				                                     & 80\% of the TPC			                                            & yet to be defined		                                              \\ \colhline         
+%%%%   Frames per second				                             & yet to be defined			                                        & yet to be defined		                                              \\ \colhline             
+%%%%   Resolution 				                                     & 2 mm on the TPC			                                            & yet to be defined		                                              \\ \colhline           
+%%%%   heat transfer				                             & no generation of bubbles			                                & 	no generation of bubbles		                                                              \\ \colhline         
+%%%%   longevity				                                     & > 18 months			                                                & > 20 years		                                                  \\ \colhline         
+%%%%   \textbf{Light emitting system}	                                     &                                                                      &                                                                     \\ \colhline        
+%%%%   radiant flux 				                                 & > 10 mW/sr			                                        & 
+%%%%   100 mW/sr \\ \colhline         
+%%%%   power				                                         & < 125 mW/LED			                                        & \dword{alara}		                                              \\ \colhline           
+%%%%   wavelength				                                     & red/green			                                            & IR/white		                                              \\ \colhline         
+%%%%   longevity				                                     & > 18 months (for cold cameras) 			                            & > 20 years		                                              \\ \colhline         
+%%%%   \textbf{Cryogenics Instrumentation Tests Facility}	                 &                                                                      &                                                                     \\ \colhline            
+%%%%   Dimensions				                                     & 0.5-~3  cubic meters 			                                    & 0.5-3 cubic meters		                                          \\ \colhline             
+%%%%   Temperature stability				                         & +-1K			                                                        & +- 1K		                                                          \\ \colhline                                       
+%%%%   Turn-Around time				                             & ~9 days			                                                    & 9 days 		                                                      \\ \colhline                                       
+%%%%   LAr purity				                                     & O2 and H2O low enough  to measure drifting                            		                                                      
+%%%%                                                                  electrons of devices under test, ~0.5ms.                                                                        
+%%%%                                                                  N2 levels at the ppm level for scintillation light tests. 	        &  >1.0 ms                                                            \\ \colhline
+%%%%   \textbf{Slow Controls}		                                         &                                                                      &                                                                     \\ \colhline
+%%%%   Alarm rate				                                     & <150/day			                                                    &  < 50/day                                                           \\ \colhline
+%%%%   Total No. of variables				                         & 150,000			                                                    &  150,000 - 200,000                                                   \\ \colhline
+%%%%   Server rack space				                             & 2 racks			                                                    &  3 racks                                                            \\ \colhline
+%%%%   Archiving rate 				                                 & 0.02 Hz			                                                    &  Broad range 1 Hz  to 1 per few min.                                \\ \colhline
+%%%%   Near Detector Status				                         & Beam Conditions and Detector Status	                                &  Full Beam and Detector Status                                      \\          
+%%%%   \end{dunetable}                                  
 
-
-\begin{dunetable}
-[Requirements for CISC subsystems]
-{p{0.45\linewidth}p{0.25\linewidth}p{0.25\linewidth}}
-{tab:fdgen-slow-cryo-requirements-2}
-{List of requirements for the different CISC subsystems}   
-Quantity/Parameter				                             & Minimum Requirement			                                        & Goal		                                              \\ \toprowrule   
-\textbf{Level Meters}	                                             &                                                                      &                                                                     \\ \colhline            
-Precision (LBNF side)				                         & 0.1\% over 14 m (14 mm)			                                    & 0.1\% over 14 m (14 mm)		                                      \\ \colhline           
-Precision (additional level meters, DUNE side)				 & 20 mm			                                                    &  20 mm		                                                      \\ \colhline         
-Longevity				                                     & 20 years			                                                    & > 20 years		                                                  \\ \colhline     
-\textbf{Cold cameras}	                                             &                                                                      &                                                                     \\ \colhline        
-Coverage				                                     & 80\% of the exterior of HV surfaces			                        & 100\% 	                                                          \\ \colhline         
-Frames per second				                             & yet to be defined			                                        & yet to be defined		                                              \\ \colhline             
-Resolution 				                                     & 1 cm on the TPC			                                            & yet to be defined		                                              \\ \colhline           
-Duty cycle				                                     & yet to be defined			                                        & yet to be defined		                                              \\ \colhline         
-longevity				                                     & > 18 months			                                                & > 20 years		                                                  \\ 
-\textbf{Inspection cameras}	                                         &                                                                      &                                                                     \\ \colhline        
-Coverage				                                     & 80\% of the TPC			                                            & yet to be defined		                                              \\ \colhline         
-Frames per second				                             & yet to be defined			                                        & yet to be defined		                                              \\ \colhline             
-Resolution 				                                     & 2 mm on the TPC			                                            & yet to be defined		                                              \\ \colhline           
-heat transfer				                             & no generation of bubbles			                                & 	no generation of bubbles		                                                              \\ \colhline         
-longevity				                                     & > 18 months			                                                & > 20 years		                                                  \\ \colhline         
-\textbf{Light emitting system}	                                     &                                                                      &                                                                     \\ \colhline        
-radiant flux 				                                 & > 10 mW/sr			                                        & 
-100 mW/sr \\ \colhline         
-power				                                         & < 125 mW/LED			                                        & \dword{alara}		                                              \\ \colhline           
-wavelength				                                     & red/green			                                            & IR/white		                                              \\ \colhline         
-longevity				                                     & > 18 months (for cold cameras) 			                            & > 20 years		                                              \\ \colhline         
-\textbf{Cryogenics Instrumentation Tests Facility}	                 &                                                                      &                                                                     \\ \colhline            
-Dimensions				                                     & 0.5-~3  cubic meters 			                                    & 0.5-3 cubic meters		                                          \\ \colhline             
-Temperature stability				                         & +-1K			                                                        & +- 1K		                                                          \\ \colhline                                       
-Turn-Around time				                             & ~9 days			                                                    & 9 days 		                                                      \\ \colhline                                       
-LAr purity				                                     & O2 and H2O low enough  to measure drifting                            		                                                      
-                                                               electrons of devices under test, ~0.5ms.                                                                        
-                                                               N2 levels at the ppm level for scintillation light tests. 	        &  >1.0 ms                                                            \\ \colhline
-\textbf{Slow Controls}		                                         &                                                                      &                                                                     \\ \colhline
-Alarm rate				                                     & <150/day			                                                    &  < 50/day                                                           \\ \colhline
-Total No. of variables				                         & 150,000			                                                    &  150,000 - 200,000                                                   \\ \colhline
-Server rack space				                             & 2 racks			                                                    &  3 racks                                                            \\ \colhline
-Archiving rate 				                                 & 0.02 Hz			                                                    &  Broad range 1 Hz  to 1 per few min.                                \\ \colhline
-Near Detector Status				                         & Beam Conditions and Detector Status	                                &  Full Beam and Detector Status                                      \\          
-\end{dunetable}                                  
+\input{generated/req-SP-CISC-all}
 
 %%%%%%%%
 \section{Fluid Dynamics Simulation}
