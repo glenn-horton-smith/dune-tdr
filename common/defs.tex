@@ -20,15 +20,36 @@
 \def\tdrtitle{DRAFT Technical Design Report}
 
 
-% All volume titles in one place.
+% All volume titles and numbers in one place.
 \def\voltitleexec{Executive Summary\xspace}
-\def\voltitlephysics{DUNE Physics\xspace}
-\def\voltitlesp{Single-Phase Far Detector Module\xspace}
-\def\voltitledp{Dual-Phase Far Detector Module\xspace}
-\def\voltitlend{Near Detector\xspace}
-\def\voltitleswc{Software and Computing\xspace}
-\def\voltitletc{Technical Coordination\xspace}
+\def\volnumberexec{1}
 
+\def\voltitlephysics{DUNE Physics\xspace}
+\def\volnumberphysics{2}
+
+\def\voltitlesp{Single-Phase Far Detector Module\xspace}
+\def\volnumbersp{3}
+
+\def\voltitledp{Dual-Phase Far Detector Module\xspace}
+\def\volnumberdp{4}
+
+\def\voltitlend{Near Detector\xspace}
+\def\volnumbernd{5}
+
+\def\voltitleswc{Software and Computing\xspace}
+\def\volnumberswc{6}
+
+\def\voltitletc{Technical Coordination\xspace}
+\def\volnumbertc{7}
+
+% see~\refsec{exec}{2.3}
+\newcommand{\refsec}[2]{Volume~\csname volnumber#1\endcsname \xspace Section~#2}
+% see~\refch{exec}{2}
+\newcommand{\refch}[2]{Volume~\csname volnumber#1\endcsname \xspace Chapter~#2}
+% see Table~\refinch{exec}{1.2}
+\newcommand{\refinch}[2]{#2 in Volume~\csname volnumber#1\endcsname \xspace}
+
+\newcommand{\bigo}[1]{\ensuremath{\mathcal{O}(#1)}}
 
 
 % Things about oscillation
@@ -97,7 +118,7 @@
 \def\cryostatwdth{\SI{14.0}{\meter}\xspace} % height of cryostat
 \def\nominalmodsize{\SI{10}{kt}\xspace} % nominal module size 10 kt
 
-\def\dunelifetime{\SI{20}{year}\xspace} % nominal operational life time of DUNE experiment
+\def\dunelifetime{\SI{20}{years}\xspace} % nominal operational life time of DUNE experiment
 \def\beamturnon{{2026}\xspace} % the year we expect beam to turn on
 \def\firstfdmodstartinstall{{2022}\xspace} % the year we expect to start install of 1st FD moc
 \def\maincavernstartexc{{2019}\xspace} % the year we expect to start cavern excavation
@@ -180,6 +201,7 @@
 \newcommand{\dpmod}{DP detector module\xspace}
 \newcommand{\spmod}{SP detector module\xspace}
 \newcommand{\lar}{LAr\xspace}
+\newcommand{\lntwo}{LN$_2$\xspace}
 
 % Top-level requirements and specifications
 % 1 Minimum drift field
@@ -191,7 +213,7 @@
 \def\lightyield{\SI{0.5}{pe/\MeV}\xspace}
 \def\lightyieldgoal{\SI{5}{pe/\MeV}\xspace}
 % 4 time resolution
-\def\timeres{\SI{1}{\mu/\s}\xspace}
+\def\timeres{\SI{1}{\micro/\second}\xspace}
 \def\timeresgoal{\SI{100}{ns}\xspace}
 % 5 LAr purity
 \def\larpurity{\SI{100}{ppt}\xspace}
@@ -216,7 +238,7 @@
 % 12 HV PS ripple contrib to noise
 \def\hvripplenoise{\SI{100}{enc}\xspace}
 % 13 FE peaking time
-\def\{\fepeaktime{SI{1}{\mu}s\xspace}
+\def\fepeaktime{\SI{1}{\micro\second}\xspace}
 % 14 signal saturation level (SP)
 \def\spsignalsat{\num{500000} electrons\xspace}
 % 15 LAr N contamination

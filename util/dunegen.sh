@@ -8,18 +8,20 @@ dunegen-untar () {
     tf="$1"; shift
     if [ -z "$tf" ] ; then exit; fi
 
-    tdir=$(mktemp -d '/tmp/dunegen-XXXXX')
-    for one in $(tar -C $tdir -xvf $tf)
+    tdir=$(mktemp -d "/tmp/dunegen-$(basename $tf .tar)-XXXXX")
+    tar -C $tdir -xf $tf
+    for one in $tdir/*.xlsx
     do
-        if [[ $one =~ ^.*\.xlsx$ ]] ; then
-            echo "$tdir/$one"
-            return
-        fi
+        # take first
+        echo "$one"
+        return
     done
+    # here if fail
     rm -rf $tdir
 }
 
 dunegen-reqs () {
+    ccode="$1" ; shift
     docid=$1 ; shift
     templ=$1 ; shift
     out=$1; shift
@@ -28,10 +30,21 @@ dunegen-reqs () {
     fi
     tf="$(dirname $docid)/$(cat $docid).tar"
     xlsf=$(dunegen-untar $tf)
-    dune-reqs render -t $templ -o $out $xlsf
+
+    set -x
+    
+    dune-reqs render -C "$ccode" -t "$templ" -o $out $xlsf || exit 1
+
+    tdir=$(dirname $xlsf)
+    if [ -d "$tdir" ] ; then
+        rm -rf "$tdir"
+    fi
+
+    set +x
 }
 dunegen-reqs-one-and-all () {
     ccode="$1" ; shift
+
     docid="$1" ; shift
     onetempl="$1" ; shift
     alltempl="$1" ; shift
@@ -47,8 +60,23 @@ dunegen-reqs-one-and-all () {
     xlsf="$(dunegen-untar $tf)"
     # use default '-c collection' option.
     set -x
-    dune-reqs render-one -C "$ccode" -t "$onetempl" -T "$alltempl" -o "$oneout" -O "$allout" "$xlsf"
+
+    dune-reqs render-one -C "$ccode" -t "$onetempl" -T "$alltempl" -o "$oneout" -O "$allout" "$xlsf" || exit 1
     set +x
+}
+
+dunegen-render-specs () {
+    ccode="$1" ; shift
+    xlsfile="$(readlink -f $1)"; shift
+
+    origdir=$(pwd)
+    mydir=$(dirname $(readlink -f $BASH_SOURCE))
+    topdir=$(dirname $mydir)
+    blddir="$topdir/build"
+    cd $blddir
+    dune-reqs render-one -C $ccode -t "../util/templates/spec-table-one.tex.j2" -T "../util/templates/spec-table-all.tex.j2" -o "../generated/req-${ccode}-{label}.tex" -O "../generated/req-${ccode}-all.tex" "$xlsfile"
+    cd $origdir
+
 }
 
 
