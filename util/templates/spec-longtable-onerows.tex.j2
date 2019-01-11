@@ -1,0 +1,15 @@
+% This file is generated, any edits may be lost. (The .tex file, not the .tex.j2 template.)
+
+\begin{longtable}{p{0.13\textwidth}p{0.23\textwidth}p{0.13\textwidth}p{0.27\textwidth}p{0.13\textwidth}}
+\caption{Specifications for just ~{{ code }}~ \fixmehl{ref \texttt{tab:specs:just:~{{ code }}~}}} \\
+%
+     \rowcolor{dunesky}
+       Label & Description  & Specification \newline (Goal) & Rationale & Validation \\  \colhline
+       \endhead
+%
+~{ for kdat in collection_list -}~
+\input{generated/~{{ kdat.one_file }}~} % ~{{ kdat.ssid }}~
+~{ endfor }~
+
+\label{tab:specs:just:~{{ code }}~}
+\end{longtable}
