@@ -4,6 +4,13 @@
 # dune-reqs from dune-params project in DUNE's GitHub.  Most people
 # don't have to mess with this.
 
+# Mac is such a broken system.  It's slavish fear of Free Software
+# hurts its users and hurts developers that want to help.  Here, work
+# around the fact that it's readlink does not honor "-f".
+realpath-mac-think-brokenly () {
+    python -c 'import os,sys;print(os.path.realpath(sys.argv[1]))' $1
+}
+
 dunegen-untar () {
     tf="$1"; shift
     if [ -z "$tf" ] ; then exit; fi
@@ -67,16 +74,33 @@ dunegen-reqs-one-and-all () {
 
 dunegen-render-specs () {
     ccode="$1" ; shift
-    xlsfile="$(readlink -f $1)"; shift
+    xlsfile="$(realpath-mac-think-brokenly $1)"; shift
 
     origdir=$(pwd)
-    mydir=$(dirname $(readlink -f $BASH_SOURCE))
+    mydir=$(dirname $(realpath-mac-think-brokenly $BASH_SOURCE))
     topdir=$(dirname $mydir)
     blddir="$topdir/build"
     cd $blddir
     dune-reqs render-one -C $ccode -t "../util/templates/spec-table-one.tex.j2" -T "../util/templates/spec-table-all.tex.j2" -o "../generated/req-${ccode}-{label}.tex" -O "../generated/req-${ccode}-all.tex" "$xlsfile"
     cd $origdir
 
+}
+
+dunegen-validate () {
+    ccode="$1" ; shift
+    xlsfile="$(realpath-mac-think-brokenly $1)"; shift
+    ofile="$1"; shift
+
+    if [[ ! $ofile =~ ^.*\.tex$ ]];     then
+        echo "Got unexpected output file extension: $ofile"
+        echo "usage: dunegen.sh validate <code> <xlsfile> <texfile>"
+        exit 1
+    fi
+
+    mydir="$(dirname $(realpath-mac-think-brokenly $BASH_SOURCE))"
+
+    tmpl="$mydir/templates/all-reqs.tex.j2"
+    dune-reqs render -C "$ccode" -t "$tmpl" -o "$ofile" "$xlsfile"
 }
 
 

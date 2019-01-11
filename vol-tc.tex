@@ -12,7 +12,8 @@
 %\cleardoublepage
 
 \input{common/init}
-\newcommand\thechapternumber{0}
+\setcounter{chapter}{-1}
+%\newcommand\thechapternumber{0}
 
 \input{vol-tc/00-tc-execsum}
 
@@ -43,6 +44,9 @@
 \input{vol-tc/09-tc-ESH}
 \cleardoublepage
 
+\chapter{Appendix: Requirements}
+\label{ch:tc-sp-reqs}
+\input{generated/req-longtable-SP-FD}
 
 \input{common/final}
 \end{document}

@@ -389,3 +389,8 @@
 
 
 % see preamble for hyperref related.
+
+\usepackage{float}
+\usepackage{overpic}
+\usepackage{subfig}
+

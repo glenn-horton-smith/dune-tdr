@@ -33,14 +33,14 @@
 \def\voltitledp{Dual-Phase Far Detector Module\xspace}
 \def\volnumberdp{4}
 
+\def\voltitletc{Technical Coordination\xspace}
+\def\volnumbertc{5}
+
 \def\voltitlend{Near Detector\xspace}
-\def\volnumbernd{5}
+\def\volnumbernd{6}
 
 \def\voltitleswc{Software and Computing\xspace}
-\def\volnumberswc{6}
-
-\def\voltitletc{Technical Coordination\xspace}
-\def\volnumbertc{7}
+\def\volnumberswc{7}
 
 % see~\refsec{exec}{2.3}
 \newcommand{\refsec}[2]{Volume~\csname volnumber#1\endcsname \xspace Section~#2}
@@ -128,7 +128,7 @@
 % Parameters SP
 \def\spmaxfield{\SI{500}{\volt/\centi\meter}} % SPfield strength
 \def\spactivelarmass{\SI{10}{\kt}\xspace} % active mass in cryostat
-\def\spmaxdrift{\SI{3.53}{\m}\xspace}
+\def\spmaxdrift{\SI{3.52}{\m}\xspace}
 \def\sptpclen{\SI{58}{\meter}\xspace} % length of SP TPC, APA, CPA
 \def\apacpapitch{\SI{2.32}{\meter}\xspace} % pitch of SP CPAs and APAs
 \def\spfcmodlen{\SI{3.5}{\m}} % length of SP FC module
@@ -168,8 +168,8 @@
 % interesting amount of time we might have SNB neutrinos but not yet
 % enough to trigger.
 \def\snbpretime{\SI{10}{\s}\xspace}
-% SP SNB dump size
-\def\spsnbsize{\SI{45}{\PB}\xspace}
+% SP SNB dump size. MUST KEEP THIS MANUALLY IN SYNC 1.5 TB/s * \snbtime
+\def\spsnbsize{\SI{45}{\TB}\xspace}
 
 % keep these three numerically in sync
 \def\offsitepbpy{\SI{30}{\PB/\year}\xspace}
@@ -296,3 +296,15 @@
 %\newcommand{\citedocdb}[2]{
 %\href{http://docs.dunescience.org/cgi-bin/ShowDocument?docid=#1\&version=#2}{DocDB {#1}} \cite{bib:docdb#1}\xspace}  % example of use: \citedocdb{6745}{1}
 
+% The following from phys ch-bsm 1/3/19 (was in their cls file)
+\newcommand{\lsim}{{\;\raise0.3ex\hbox{$<$\kern-0.75em\raise-1.1ex\hbox{$\sim$}}\;}}
+\newcommand{\gsim}{{\;\raise0.3ex\hbox{$>$\kern-0.75em\raise-1.1ex\hbox{$\sim$}}\;}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\DF}{\Delta_{4}}
+\mathchardef\minus="002D
+\newcommand{\dk}[1]{\textcolor{red}{#1}}
+\newcommand{\dkc}[1]{\textbf{\textcolor{red}{(#1 --DK)}}}
+\newcommand{\dd}[1]{\textcolor{blue}{#1}}

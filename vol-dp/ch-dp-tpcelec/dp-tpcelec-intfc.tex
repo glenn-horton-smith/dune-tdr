@@ -5,19 +5,20 @@
 The \dual electronics system interfaces to several other systems, starting with the \dword{crp} and the \dword{pd} systems.  The digitized data must in turn flow to the \dword{daq} via the optical links in each \dword{utca} crate. The \dwords{sftchimney} integrate into the cryostat structure and connect to the cryogenics and gas systems. The slow-control system takes on management of the low-voltage power supplies for the \dword{fe} analog electronics and \dword{utca} crates, and  monitors various sensors in the \dwords{sftchimney}. Table~\ref{tab:dp-tpcelec-interfaces} provides the references to the relevant interface documents for each interface, stored in the DUNE document database (DocDB).
 
 \begin{dunetable}
-[Interface documents relevant to \dual TPC electronics system]
-{lr}{tab:dp-tpcelec-interfaces}{Interface documents relevant to \dual electronics system.}   
-Interface document    & DUNE DocDB No. \\ \toprowrule
-\dword{dp} TPC electronics to \dword{dp} \dword{crp} & 6751 \\ \colhline
-\dword{dp} TPC electronics to \dword{dp} \dword{pd} & 6772 \\ \colhline
-\dword{dp} TPC electronics to Joint \dword{daq} & 6778 \\ \colhline
-\dword{dp} TPC electronics to Joint CISC & 6784 \\ \colhline
-Facility Interfaces to \dword{dp} TPC electronics & 6982 \\ \colhline
-Installation interfaces to \dword{dp} TPC electronics & 7009 \\ \colhline
-Integration facility to \dword{dp} TPC electronics & 7036 \\ \colhline
-Calibration to \dword{dp} TPC electronics & 7063 \\ \colhline
-DUNE physics to \dword{dp} TPC electronics & 7090 \\ \colhline
-Software and computing to \dword{dp} TPC electronics & 7117 \\ 
+[TPC Electronics System Interface Links]
+{p{0.25\textwidth}p{0.5\textwidth}l}
+{tab:dp-tpcelec-interfaces}
+{TPC Electronics System Interface Links}
+Interfacing System & Description & Linked Reference \\ \toprowrule
+\dword{crp} & signals from charge collection strips & \citedocdb{6751} \\ \colhline
+\dword{pd} & signals from light detection sensors & \citedocdb{6772} \\ \colhline
+\dword{daq} & transmission of digitized \dword{cro} and \dword{lro} data & \citedocdb{6778} \\ \colhline
+\dword{cisc} & \dword{sftchimney} sensors, control of low-voltage power supplies for \dword{fe} cards, monitoring of \dword{utca} crates & \citedocdb{6784} \\ \colhline
+Underground installation & transport of material and underground installation procedure & \citedocdb{7009} \\ \colhline
+Integration facility  & logistics and use of integration facility & \citedocdb{7036} \\ \colhline
+Calibration & calibration database format & \citedocdb{7063} \\ \colhline
+DUNE physics & simulation of the electronics system & \citedocdb{7090} \\ \colhline
+Software and computing & reconstruction and analysis tools for charge and light signals & \citedocdb{7117} \\ 
 \end{dunetable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,7 +28,7 @@ Software and computing to \dword{dp} TPC electronics & 7117 \\
 The cold \fdth flange of the \dwords{sftchimney} forms the interface between the \dword{crp} and the \dword{cro} electronics system. On the side facing the cryostat the flange PCB has \num{20} \num{68}\,pin connectors (KEL 8930E-068-178MS-F\footnote{KEL Corporation\texttrademark{}, \url{https://www.kel.jp/english/product/product_detail/?id=490\&pageID=3\%20}.}) for plugging the flat cables from the \dword{crp}. These are \num{68}\,channel twisted-pair flat cables, each carrying signals from \num{32} anode strips and are within the scope of the \dword{crp} system. Each analog \dword{fe} card reads \num{64} anode strips, i.e., signals from two KEL connectors. The order in which the cables are connected to the cold flange determines the mapping of the electronic channels to the physical location of the strips on the \dword{crp} and is coordinated carefully with the \dword{crp} consortium. Figure~\ref{fig:dp-tpcelec-sft-cold-flange} shows two images of the cold \fdth from the \dword{wa105}.
 
 \begin{dunefigure}[Images of the \dword{wa105} \dword{sft} cold \fdth]{fig:dp-tpcelec-sft-cold-flange}
-{Images of the \dword{wa105} \dword{sft} cold \fdth with the \dword{fe} cards inserted (right) and signal cables from \dword{crp} connected (left). The \dword{wa105} \dwords{sftchimney} read only \num{320} channels thus requiring \num{5} \dword{fe} cards.}
+{Images of the \dword{wa105} \dword{sft} cold \fdth with the \dword{fe} cards inserted (right) and signal cables from \dword{crp} connected (left). The \dword{wa105} \dwords{sftchimney} read only \num{320} channels thus requiring \num{5} \dword{fe} cards. \fixme{to be updated with the ones from ProtoDUNE-DP after installation is finished}}
 \includegraphics[width=0.8\textwidth]{dp-tpcelec-sft-cold-flange}
 \end{dunefigure}
 
@@ -59,6 +60,7 @@ The software interface between the \dword{daq} and the electronics system includ
 
 The interface point between the cryostat and the \dual electronics system is at the cryostat penetrations where the \dwords{sftchimney} are installed. Each penetration accommodates the chimney (of external diameter \SI{254}{\mm}). Each chimney has a CF-273 flange welded to its outer structure (see Figure~\ref{fig:dp-tpcelec-sft-chimney-crosspipe}). After the chimney is inserted, this flange is in contact with the corresponding flange on the crossing (or penetration) pipe embedded in the cryostat structure to which it is eventually fastened. In order to avoid any leaks at this interface a CF-273 copper gasket is used to ensure the vacuum tightness.  
 
+\fixme{it would be nice to replace this figure with an image from the actual cryostat 3D model if such exists}
 \begin{dunefigure}[Details of \dword{sftchimney} interface to the cryostat structure]{fig:dp-tpcelec-sft-chimney-crosspipe}
 {Details of \dword{sftchimney} interface to the cryostat structure.}
 \includegraphics[width=0.7\textwidth]{dp-tpcelec-sft-chimney-crosspipe}
