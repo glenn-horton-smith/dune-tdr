@@ -47,7 +47,7 @@
     longplural={{#3}\glspluralsuffix{}},
     name={\glsentrylong{#1}{} (\glsentrytext{#1}{})},
     first={\glsentryname{#1}},
-    firstplural={\glsentrylong{#1}\glspluralsuffix{} (\glsentrytext{#1}\glspluralsuffix{})},
+    firstplural={#3\glspluralsuffix{} (\glsentrytext{#1}\glspluralsuffix{})},
     description={#4}
   }
 }
@@ -96,6 +96,10 @@
 \newduneabbrev{pds}{PDS}{photon detection system}{The detector 
   subsystem sensitive to light produced in the \lar }
 
+%high voltage system
+\newduneabbrev{hvs}{HVS}{high voltage system}{The detector 
+  subsystem that provides the TPC drift field }
+
 %time projection chamber
 \newduneabbrev{tpc}{TPC}{time projection chamber}{The portion of each
   DUNE \gls{detmodule} that records ionization electrons
@@ -110,6 +114,10 @@
   detector module containing the elements sensitive to ionization in the \lar. 
   It contains two faces each of three planes of wires, and interfaces to the cold
   electronics and photon detection system} 
+
+\newduneabbrev{awg}{AWG}{american wire gauge} {U.S. standard set of non-ferrous wire conductor sizes}
+
+\newduneabbrev{ufer}{Ufer}{Concrete Encased Electrode} {U.S. National Electrical Code grounding method refered to as Concrete Encased Electrode}
 
 %charge readout
 \newduneabbrev{cro}{CRO}{charge readout}{The system for detecting
@@ -406,9 +414,8 @@ liquid Argon detector R\&D and for testing of DUNE detector components}
 \newduneword{sar}{SAR}{successive approximation register}
 
 %protodune
-\newduneword{protodune}{ProtoDUNE}{Either of the two DUNE prototype detectors constructed at CERN and operated in
-  a CERN test beam (expected fall 2018). 
-  One prototype implements \single and the other \dual technology}
+\newduneword{protodune}{ProtoDUNE}{Either of the two DUNE prototype detectors constructed at CERN. % and operated in  a CERN test beam (expected fall 2018). 
+  One prototype implements \single and the other \dual technology. }
 
 %the single-phase ProtoDUNE detector
 \newduneword{pdsp}{ProtoDUNE-SP}{The \single ProtoDUNE detector}
@@ -516,6 +523,10 @@ liquid Argon detector R\&D and for testing of DUNE detector components}
 \newduneabbrev{cisc}{CISC}{cryogenic instrumentation and slow controls}{A DUNE
   consortium responsible for the cryogenic instrumentation and slow controls components}
 
+%FTE
+\newduneword{fte}{FTE}{Full Time Equivalent. A unit of labor
+  for the project. One year of work from one person.}
+
 %consortium
 \newduneword{consortium}{consortium}{A unit of organization in the
   DUNE project focused on one major component of the far detector}
@@ -570,11 +581,15 @@ modern multi-core and networked computers}
 %us department of energy
 \newduneword{doe}{DOE}{U.S. Department of Energy}
 
+\newduneword{us}{U.S.}{United States of America}
+
 %deep underground neutrino experiment
 \newduneword{dune}{DUNE}{Deep Underground Neutrino Experiment}
 
 %environment, safety and health
 \newduneword{esh}{ES\&H}{Environment, Safety and Health}
+
+\newduneword{ppe}{PPE}{Personnel Protective Equipment}
 
 %fine-grained tracker
 \newduneabbrev{fgt}{FGT}{fine-grained tracker}{A near detector module ??}
@@ -588,8 +603,7 @@ modern multi-core and networked computers}
   \gslpl{cf} at the DUNE near detector site, \fnal}
 
 %grand unified theory
-\newduneabbrev{gut}{GUT}{grand unified theory}{A class of theories that
-  unifies the electro-weak and strong forces}
+\newduneabbrevs{gut}{GUT}{grand unified theory}{grand unified theories}{A class of theories that unifies the electro-weak and strong forces}
 
 %liquid argon
 \newduneabbrev{lar}{LAr}{liquid argon}{The liquid phase of argon}
@@ -634,12 +648,10 @@ modern multi-core and networked computers}
   production target}
 
 %quality assurance
-\newduneabbrev{qa}{QA}{quality assurance}{The process by which quality is maintained so as to preserve
-high availability and precise function}
+\newduneabbrev{qa}{QA}{quality assurance}{The set of actions taken to provide confidence that quality requirements are fulfilled, and to detect and correct poor results}
 
 %quality control
-\newduneabbrev{qc}{QC}{quality control}{A system of maintaining
-  quality through testing products against a specification}
+\newduneabbrev{qc}{QC}{quality control}{An aggregate of activities (such as design analysis and inspection for defects) performed to ensure adequate quality in manufactured products}
 
 %standard model
 \newduneabbrev{sm}{SM}{Standard Model}{Refers to a theory describing
@@ -663,10 +675,8 @@ milestone on the path to a full \gls{tdr}} % changed from ``technical proposal''
   used to determine the value of a random variable given its
   distribution}
 
-\newduneabbrev{pmns}{PMNS matrix}{Pontecorvo-Maki-Nakagawa-Sakata
-  matrix}{Describes the mixing between mass and weak eigenstates of
+\newduneabbrev{pmns}{PMNS}{Pontecorvo-Maki-Nakagawa-Sakata}{A type of matrix that describes the mixing between mass and weak eigenstates of
   the neutrino}
-
 
 
 %%%%%%%%%%%%%%%%%.....................
@@ -718,7 +728,10 @@ milestone on the path to a full \gls{tdr}} % changed from ``technical proposal''
 \newduneabbrev{tcoord}{TC}{technical coordinator}{Responsible for organization of
 the project effort. Is a member of the \dword{dune} management team}
 
-\newduneword{tc}{TCOR}{technical coordination}
+\newduneabbrev{rcoord}{RC}{resource coordinator}{Responsible for financing of
+the project effort. Is a member of the \dword{dune} management team}
+
+\newduneword{tc}{TCN}{technical coordination}
 
 \newduneabbrev{exb}{EB}{executive board}{The highest level DUNE
   decision making body for the collaboration}
@@ -746,7 +759,7 @@ the project effort. Is a member of the \dword{dune} management team}
   the initial, fundamental particle interaction, such as may occur as
   the products exit a nucleus}
 
-\newduneabbrev{geant4}{Geant4}{GEometry ANd Tracking, version 4}{A
+\newduneword{geant4}{Geant4}{A
   software toolkit for the simulation of the passage of particles
   through matter using Monte Carlo methods}
 
@@ -780,6 +793,14 @@ the project effort. Is a member of the \dword{dune} management team}
   Authority}{The legal entity that manages the Sanford Underground
   Research Facility, \surf, in Lead, S.D}
 
+\newduneabbrev{firus}{FIRUS}{Facility Information Reporting Utility System}
+ {The safety system at \surf}
+
+\newduneabbrev{bsi}{BSI}{Building and Site Infrastructure}
+ {The work package for outfitting of the \dword{lbnf} underground infrastructure.}
+
+
+
 \newduneabbrev{wbs}{WBS}{work breakdown structure}{An organizational
   project management tool by which the tasks to be performed are
   partitioned in a hierarchical manner}
@@ -788,11 +809,14 @@ the project effort. Is a member of the \dword{dune} management team}
 \newduneabbrev{br}{BR}{branching ratio}{A fractional probability for a
   decay of a composite particle to occur into some specified set or
   sets of products}
+\newduneword{bsm}{BSM}{beyond the standard model}
 
 \newduneabbrev{dm}{DM}{dark matter}{The term given to the unknown
   matter or force that explains measurements of motion of galaxies
   that are otherwise inconsistent with the amount of mass associated
   with observed amount of photon production}
+  
+  \newduneabbrev{bdm}{BDM}{dark matter}{Add definition}
 
 \newduneabbrev{dsnb}{DSNB}{Diffuse Supernova Neutrino Background}{The
   term describing the pervasive, constant flux of neutrinos due to all
@@ -930,16 +954,23 @@ the project effort. Is a member of the \dword{dune} management team}
 
 \newduneabbrev{dss}{DSS}{detector support system}{The system used to support the \single detector within the cryostat}
 
+\newduneabbrev{ddss}{DDSS}{\dword{dune} detector safety system}{The system used to manage key aspects of detector safety}
+
 \newduneabbrev{itf}{ITF}{integration and test facility}{A facility where various detector components will be tested prior to installation}
 
+\newduneabbrev{lc}{LC}{logistics center}{A facility where \dword{lbnf} and \dword{dune} components will be received and transhipped to \dword{surf}}
+
 \newduneabbrev{tco}{TCO}{temporary construction opening}{An opening in the side of a cryostat through which detector elements are brought into the cryostat; utilized during construction and installation}
+
+\newduneabbrev{surf}{SURF}{sanford underground research facility}{The laboratory in South Dakota where \dword{lbnf} will be constructed}
 
 \newduneabbrev{sit}{SIT}{surface installation team}{An organizational unit responsible for logistics and integration in South Dakota}
 
 \newduneabbrev{uit}{UIT}{underground installation team}{An organizational unit responsible for installation in the underground area at the \surf site}
 
-\newduneabbrev{cmgc}{cmgc}{construction manager/general contractor}{The organizational unit responsible for management of the construction of conventional facilities at the underground area at the \surf site}
+\newduneabbrev{cmgc}{CMGC}{construction manager/general contractor}{The organizational unit responsible for management of the construction of conventional facilities at the underground area at the \surf site}
 
+\newduneabbrev{cdrev}{CDR}{conceptual design review}{A project management device by which a conceptual design is reviewed}
 \newduneabbrev{pdr}{PDR}{preliminary design review}{A project management device by which an early design is reviewed}
 \newduneabbrev{fdr}{FDR}{final design review}{A project management device by which a final design is reviewed}
 \newduneabbrev{prr}{PRR}{production readiness review}{A project management device by which the production readiness is reviewed}
@@ -967,6 +998,8 @@ the project effort. Is a member of the \dword{dune} management team}
 \newduneabbrev{cfd}{CFD}{computational fluid dynamics}{High performance computer-assisted modeling of fluid dynamical systems}
 \newduneword{vuv}{VUV}{vacuum ultra-violet}
 \newduneword{tallbo}{TallBo}{A cylindrical cryostat at \fnal primarily used for developing scintillation light collection technologies for \lartpc detectors}
+
+\newduneword{root}{ROOT}{add definition}
 
 \newduneabbrev{eos}{EOS}{EOS}{The XRootD based distributed file system developed by CERN}
 \newduneabbrev{ehn1}{EHN1}{Experiment Hall North One}{Location at CERN of the ProtoDUNE experiments}
@@ -1012,6 +1045,9 @@ the project effort. Is a member of the \dword{dune} management team}
 \newduneword{lcm}{LCM}{light calibration module}
 \newduneword{lpm}{LPM}{light pulser module}
 \newduneword{dac}{DAC}{digital-to-analog converter}
-\newduneword{sarapu}{S-ARAPUCA}{add def}
-\newduneword{xarapu}{X-ARAPUCA}{add def}
+\newduneword{sarapu}{S-ARAPUCA}{ARAPUCA design with different wavelength shifter coatings on both faces of the dichroic filter window(s) of the cell}
+\newduneword{xarapu}{X-ARAPUCA}{ARAPUCA design with different wavelength shifter coating on only the external face of the dichroic filter window(s) but with a wavelength shifter doped plate inside the cell}
 \newduneword{feb}{FEB}{front-end board}
+
+\newduneword{gdml}{GDML}{needs def}
+\newduneword{lsnd}{LSND}{needs def}
