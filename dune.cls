@@ -323,13 +323,15 @@
 
 \ProcessOptions\relax
 
+\newcommand{\forlbnc}[1]{\todo[inline,backgroundcolor=dunegold]{#1}}
+
 \iffinal
-\presetkeys{todonotes}{disable}{}
+%\presetkeys{todonotes}{disable}{}
 \newcommand{\hlfix}[2]{}
 \newcommand{\fixme}[1]{}
 \newcommand{\fixmehl}[1]{}
 \newcommand{\metainfo}[1]{}
-%\linenumbers  %<---- uncomment if you want ONLY linenumbers with otherwise print-ready copy
+\linenumbers  %<---- uncomment if you want ONLY linenumbers with otherwise print-ready copy
 \else
 % "draft"
 %Set default style for todonotes
